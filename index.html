@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ellipse Variable</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let circleX;
+    let circleY;
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight); // Fullscreen canvas
+      circleX = width / 2;
+      circleY = height / 2;
+
+      background(0); // Set the background color to black
+    }
+
+    function draw() {
+      // Update circle position
+      circleX = random(width);
+      circleY = random(height);
+
+      // Draw the circle
+      fill(255); // Set circle color to white
+      ellipse(circleX, circleY, 24, 24);
+
+      // Add random movement to the circle
+      circleX += random(-2, 2);
+      circleY += random(-2, 2);
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight); // Adjust canvas size dynamically
+    }
+  </script>
+</body>
+</html>
