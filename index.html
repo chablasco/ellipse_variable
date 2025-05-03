@@ -41,6 +41,11 @@
       circleY += random(-2, 2);
     }
 
+    function mousePressed() {
+    let fs = fullscreen();
+    fullscreen(!fs);
+  }
+
     function windowResized() {
       resizeCanvas(windowWidth, windowHeight); // Adjust canvas size dynamically
     }
