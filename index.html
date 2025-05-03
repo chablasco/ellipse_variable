@@ -8,6 +8,7 @@
     body {
       margin: 0;
       overflow: hidden;
+      background: black; /* ensures black on page load */
     }
     canvas {
       display: block;
@@ -15,40 +16,36 @@
   </style>
 </head>
 <body>
-<script>
-  let circleX;
-  let circleY;
+  <script>
+    let circleX;
+    let circleY;
 
-  function setup() {
-    createCanvas(windowWidth, windowHeight);
-    circleX = width / 2;
-    circleY = height / 2;
-  }
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      background(0); // black background, only once
+    }
 
-  function draw() {
-    background(0); // Always black background
+    function draw() {
+      // Choose random position
+      circleX = random(width);
+      circleY = random(height);
 
-    // Update circle position
-    circleX = random(width);
-    circleY = random(height);
+      // Draw white circle that stays on screen
+      noStroke();
+      fill(255);
+      ellipse(circleX, circleY, 24, 24);
+    }
 
-    // Draw the circle
-    fill(255);
-    ellipse(circleX, circleY, 24, 24);
+    function mousePressed() {
+      let fs = fullscreen();
+      fullscreen(!fs);
+    }
 
-    // Add random movement (this doesn't persist since we redraw randomly each frame)
-    circleX += random(-2, 2);
-    circleY += random(-2, 2);
-  }
-
-  function mousePressed() {
-    let fs = fullscreen();
-    fullscreen(!fs);
-  }
-
-  function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-  }
-</script>
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+      // Keep the background black after resize, without clearing previous ellipses
+      background(0);
+    }
+  </script>
 </body>
 </html>
