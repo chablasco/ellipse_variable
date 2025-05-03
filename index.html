@@ -15,43 +15,40 @@
   </style>
 </head>
 <body>
-  <script>
-    let circleX;
-    let circleY;
+<script>
+  let circleX;
+  let circleY;
 
-    function setup() {
-      createCanvas(windowWidth, windowHeight); // Fullscreen canvas
-      circleX = width / 2;
-      circleY = height / 2;
+  function setup() {
+    createCanvas(windowWidth, windowHeight);
+    circleX = width / 2;
+    circleY = height / 2;
+  }
 
-      background(0); // Set the background color to black
-    }
+  function draw() {
+    background(0); // Always black background
 
-    function draw() {
+    // Update circle position
+    circleX = random(width);
+    circleY = random(height);
 
-      background(0);
-      
-      // Update circle position
-      circleX = random(width);
-      circleY = random(height);
+    // Draw the circle
+    fill(255);
+    ellipse(circleX, circleY, 24, 24);
 
-      // Draw the circle
-      fill(255); // Set circle color to white
-      ellipse(circleX, circleY, 24, 24);
+    // Add random movement (this doesn't persist since we redraw randomly each frame)
+    circleX += random(-2, 2);
+    circleY += random(-2, 2);
+  }
 
-      // Add random movement to the circle
-      circleX += random(-2, 2);
-      circleY += random(-2, 2);
-    }
-
-    function mousePressed() {
+  function mousePressed() {
     let fs = fullscreen();
     fullscreen(!fs);
   }
 
-    function windowResized() {
-      resizeCanvas(windowWidth, windowHeight); // Adjust canvas size dynamically
-    }
-  </script>
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+  }
+</script>
 </body>
 </html>
